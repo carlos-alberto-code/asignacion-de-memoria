@@ -1,0 +1,35 @@
+{
+    "name": "C Development Environment",
+    "image": "mcr.microsoft.com/devcontainers/cpp:0-debian-11",
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": "true",
+            "username": "vscode",
+            "upgradePackages": "true"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-extension-pack",
+                "ms-vscode.cpptools-themes",
+                "ms-vscode.cmake-tools",
+                "twxs.cmake",
+                "cschlosser.doxdocgen",
+                "vadimcn.vscode-lldb"
+            ],
+            "settings": {
+                "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 100 }",
+                "C_Cpp.default.cStandard": "c11",
+                "editor.formatOnSave": true
+            }
+        }
+    },
+    "runArgs": [
+        "--cap-add=SYS_PTRACE",
+        "--security-opt", "seccomp=unconfined"
+    ],
+    "postCreateCommand": "apt-get update && apt-get install -y gdb valgrind strace ltrace procps htop",
+    "remoteUser": "vscode"
+}

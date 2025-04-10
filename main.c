@@ -17,6 +17,7 @@ typedef struct MemoryBlock {
     struct MemoryBlock *next;
 } MemoryBlock;
 
+
 // Variables globales (memoria estática)
 MemoryBlock *memory_list = NULL;  // Lista enlazada para administrar bloques de memoria
 int total_memory = MEM_SIZE;      // Memoria total disponible
@@ -128,7 +129,7 @@ MemoryBlock* asignar_memoria_dinamica(int proceso_id, int tamano) {
     if (best_fit->size > tamano && (best_fit->size - tamano) >= MIN_BLOCK_SIZE) {
         MemoryBlock *new_block = (MemoryBlock*)malloc(sizeof(MemoryBlock));
         if (!new_block) {
-            perror("Error al crear un nuevo bloque de memoria");
+            perror("Error al crear un nuevo bloque de memoria; es más grande que lo necesario");
             return NULL;
         }
         
